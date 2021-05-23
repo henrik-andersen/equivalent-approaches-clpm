@@ -18,4 +18,4 @@ To use these models on data that violate the initial conditions assumptions, the
 
 # Contact 
 
-For questions and comments, please email me at: henrik.andersen@soziologie.tu-chemnitz.de 
+For questions and comments, please email me at: henrik.andersen@soziologie.tu-chemnitz.de. 
