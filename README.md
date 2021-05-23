@@ -12,9 +12,9 @@ It shows that the RI-CLPM and LCM-SR are equivalent to *constrained* versions of
 
 This places potentially unrealistic assumptions on the initial conditions, i.e., the process that was occuring before the observation period began. 
 
-Because of this, in situations in which the process under investigation is not both *stationary* and at *equilibrium*, the RI-CLPM and LCM-SR will return biased results. 
+Because of this, in situations in which the process under investigation is not both *stationary* and at *equilibrium*, the RI-CLPM and LCM-SR will return biased estimates of the autoregressive and cross-lagged parameters. This is shown analytically and using the example of cigarette smoking amongst adolescents. 
 
-To use these models on data that violates the initial conditions assumptions, the individual effects must be allowed to covary with the initial residuals. This results in a kind of *predetermined* RI-CLPM or LCM-SR. 
+To use these models on data that violate the initial conditions assumptions, the individual effects must be allowed to covary with the initial residuals. This results in a kind of *predetermined* RI-CLPM or LCM-SR. 
 
 # Contact 
 
