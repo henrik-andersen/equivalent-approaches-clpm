@@ -16,6 +16,12 @@ Because of this, in situations in which the process under investigation is not b
 
 To use these models on data that violate the initial conditions assumptions, the individual effects must be allowed to covary with the initial residuals. This results in a kind of *predetermined* RI-CLPM or LCM-SR. 
 
+# Contents
+
+- Both the .Rmd and PDF version of the author's version of the manuscript. 
+- R code used in the article for the empirical examples. 
+- Data preparation R code. 
+
 # Contact 
 
 For questions and comments, please email me at: henrik.andersen@soziologie.tu-chemnitz.de. 
