@@ -2,7 +2,7 @@
 title: "Equivalent Approaches to Dealing with Unobserved Heterogeneity in Cross-Lagged Panel Models?"
 subtitle: "Investigating the Benefits and Drawbacks of the Latent Curve Model with Structured Residuals and the Random Intercept Cross-Lagged Panel Model"
 author: "Henrik Kenneth Andersen"
-date: "25 May, 2021"
+date: "3 July, 2021"
 abstract: | 
   Panel models in structural equation modeling that combine static and dynamic components make it possible to investigate reciprocal relations while controlling for time-invariant unobserved heterogeneity. Recently, the Latent Curve Model with Structured Residuals and the Random-Intercept Cross-Lagged Panel Model were suggested as 'residual-level' versions of the more traditional Autoregressive Latent Trajectory and Dynamic Panel Models, respectively. Their main benefit is that they allow for a more straightforward interpretation of the trajectory factors.  It is not widely known, however, that the residual-level models place potentially strong assumptions on the initial conditions, i.e., the process that was occurring before the observation period began. If the process under investigation is not both stationary and at equilibrium then the residual-level models are not appropriate. They then do not control for all time-invariant unobserved heterogeneity and can result in biased cross-lagged and autoregressive estimates. I demonstrate this using the problem behavior of cigarette smoking amongst adolescents: because the mean and variance of this process changes as a young person's smoking behavior develops, early stages of this process should not be examined using the residual-level models. This issue potentially exists for a wide variety of psychological and sociological topics, essentially whenever the process under investigation is changing over the course of the observation period. This paper discusses strategies to help researchers decide which model to use when, and compares some of their relative advantages and drawbacks. An amendment to the residual-level models is suggested in which the latent individual effects are allowed to covary with the initial residuals. This makes the residual-level models robust to violations of the assumptions surrounding the initial conditions, while retaining their other beneficial aspects. 
 bibliography : "r-references.bib"
@@ -545,6 +545,8 @@ ggplot(df_sampl, aes(x = t, y = y, color = factor(id), shape = factor(id))) +
   scale_shape_discrete(name = "Case #")
 ```
 
+\singlespacing
+
 Figure \ref{fig:xxx} shows five randomly drawn cases from the simulated data. As can be seen, the process begins with $y_{i0} \sim N(0, 1)$ and, because the process is stationary, quickly moves towards its equilibrium state. This sets in after around the 5th or 6th timepoint. After that, the process is centered around $\E(y_{it}) = 10$, with a constant variance. Each individual has their own expected value, based on their own value of $\eta_{i}$. For example, case number 1039, (circle) has a corresponding individual effect of $\eta_{i = 1039} = `r round(eta[1039], 3)`$. Thus, their equilibrium state is centered over time around $(1 - \rho)^{-1}\eta_{1039} = (1 - 0.5)^{-1}`r round(eta[1039], 3)` = `r round((1 - 0.5)^-1*eta[1039], 3)`$.  
 
 Once the process has reached equilibrium, the model-implied moments discussed above are appropriate. However, this equilibrium state is not reached immediately, but rather requires a 'spin-up' phase. I.e., in the initial phase, up until about $t = 6$ or so, the covariance, $\Cov(y_{it},\eta_{i})$, does not equal $(1 - \rho)^{-1}\Var(\eta_{i})$. For example, at $t = 2$, the covariance is only around `r round(cov(df2$eta, df$y2), 2) ` $\ne (1 - 0.5)^{-1}\cdot 1 = 2$. @Usami2019 even comment on this, saying the "treatment of the initial observation is an important theoretical and practical problem for some cross-lagged models like the ALT model that includes common factors but do not separate stable between-person differences from within-person fluctuations over time" [@Usami2019, p. 641]. This seems to suggest that the RI-CLPM is spared from having to deal with this issue, but as we have seen in the above example, it is not. For the residual-level models to be appropriate, we must be sure that the process we are modeling is indeed stationary and at equilibrium. If it is not, the residual-level models will return biased results for the AR effects as well as potentially those of the other model covariates. 
@@ -654,6 +656,8 @@ summary(m2.fit, standardized = TRUE, fit.measures = TRUE)
 dfx <- data.frame(id = 1:n, eta, y0, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11, y12, y13, y14, y15)
 ```
 
+\singlespacing
+
 From this as well, we can see that the equilibrium values outlined above set in around the 7th or so timepoint. But at $t = 3$, for example, the observed mean is only `r round(mean(df$y3), 2)`, while the constrained and residual model-implied value is $\E(y_{it}) = 10$, the variance is `r round(var(df$y3), 2)` (model-implied: $\Var(y_{it}) = 4.33$), the covariance between $y_{i3}$ and the previous timepoint, $y_{i2}$, is just `r round(cov(df$y2, df$y3), 2)` (model-implied: $\Cov(y_{it},y_{it-1}) = 4.17$) and the covariance between the observed variable and the individual effects (normally not directly observable) is `r round(cov(dfx$y3, dfx$eta), 2)` (model-implied: $\Cov(y_{it},\eta_{i}) = 2$). The further along in time we go, the closer these values come to the model-implied counterparts, but in the initial phase, these values are still quite far off, leading to misfit and ultimately also bias, since we are trying to establish the within-unit effects by removing the covariance between the model covariates (e.g., the lagged dependent variable) and the individual effects. 
 
 # Empirical example: Use of cigarettes and alcohol in adolescents and young adults {#emp}
@@ -753,6 +757,8 @@ ggplot(dfvar_cig, aes(x = t, y = vars)) +
   theme(axis.line = element_line(size = 0.5, color = "black"),
         text = element_text(size = 20))
 ```
+
+\singlespacing
 
 However, young children, except in rare cases, do not smoke cigarettes. An individual's pattern of smoking typically only emerges in adolescence and, for a given youth, this pattern likely changes over time. The development of smoking behavior therefore likely follows a similar trajectory to the one shown in Figure \ref{fig:xxx}. At ages 12-14, the age at which the majority of the NLSY97 sample was surveyed for the first time, we would not expect much variance. Most youths in this age group do not smoke much, if at all. The overall average number of cigarettes smoked per occasion will be low at the first timepoint, as well. As these youths become older, some of their smoking behavior will change; some start going to parties where they might smoke many cigarettes on a given occasion. Therefore, the variance as well as the average number of cigarettes smoked per timepoint will both increase over time. We would not necessarily expect these to increase indefinitely, but rather settle into a 'normal' pattern of behavior. At this point, the process will have reached equilibrium, where it could stay for some time, though likely not forever.
 
@@ -1138,12 +1144,16 @@ alphay ~~ 0*e97 + 0*d97
 alphax ~~ 0*e97 + 0*d97
 ```
 
+\singlespacing
+
 to 
 
 ```{r eval=FALSE}
 alphay ~~ e97 + d97   
 alphax ~~ e97 + d97
 ```
+
+\singlespacing
 
 in order to allow the initial deviations to correlate with the individual intercepts. Again, this gives us exactly the analogous predetermined model. 
 
