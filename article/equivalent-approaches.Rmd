@@ -1,8 +1,13 @@
 ---
 title: "Equivalent Approaches to Dealing with Unobserved Heterogeneity in Cross-Lagged Panel Models?"
 subtitle: "Investigating the Benefits and Drawbacks of the Latent Curve Model with Structured Residuals and the Random Intercept Cross-Lagged Panel Model"
-author: "Henrik Kenneth Andersen"
-date: "3 July, 2021"
+author: |
+  | Henrik Kenneth Andersen
+  | 
+  | Chemnitz University of Technology 
+  | Institute of Sociology 
+  | henrik.andersen@soziologie.tu-chemnitz.de
+date: "15 July, 2021"
 abstract: | 
   Panel models in structural equation modeling that combine static and dynamic components make it possible to investigate reciprocal relations while controlling for time-invariant unobserved heterogeneity. Recently, the Latent Curve Model with Structured Residuals and the Random-Intercept Cross-Lagged Panel Model were suggested as 'residual-level' versions of the more traditional Autoregressive Latent Trajectory and Dynamic Panel Models, respectively. Their main benefit is that they allow for a more straightforward interpretation of the trajectory factors.  It is not widely known, however, that the residual-level models place potentially strong assumptions on the initial conditions, i.e., the process that was occurring before the observation period began. If the process under investigation is not both stationary and at equilibrium then the residual-level models are not appropriate. They then do not control for all time-invariant unobserved heterogeneity and can result in biased cross-lagged and autoregressive estimates. I demonstrate this using the problem behavior of cigarette smoking amongst adolescents: because the mean and variance of this process changes as a young person's smoking behavior develops, early stages of this process should not be examined using the residual-level models. This issue potentially exists for a wide variety of psychological and sociological topics, essentially whenever the process under investigation is changing over the course of the observation period. This paper discusses strategies to help researchers decide which model to use when, and compares some of their relative advantages and drawbacks. An amendment to the residual-level models is suggested in which the latent individual effects are allowed to covary with the initial residuals. This makes the residual-level models robust to violations of the assumptions surrounding the initial conditions, while retaining their other beneficial aspects. 
 bibliography : "r-references.bib"
@@ -10,6 +15,7 @@ urlcolor          : blue
 link-citations    : yes
 output: pdf_document
 header-includes :
+  - \usepackage{textcomp}
   - \usepackage{mathtools}
   - \usepackage{hyperref}
   - \usepackage{amsmath}
@@ -64,6 +70,16 @@ library(lavaan)
 # library(semTable)
 library(haven)
 ```
+
+--- 
+
+\begin{center}
+\textcopyright \ 2021, American Psychological Association. This paper is not the copy of record and may not exactly replicate the final, authoritative version of the article. Please do not copy or cite without authors' permission. The final article will be available, upon publication, via its DOI:  \href{https://doi.org/10.1037/met0000285}{10.1037/met0000285}.
+\end{center}
+
+--- 
+
+\newpage
 
 # Introduction {#intro}
 
